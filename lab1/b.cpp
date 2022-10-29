@@ -1,31 +1,31 @@
 #include <iostream>
-#include <queue>
+#include <stack>
 using namespace std;
 int main(){
-    int n;
+    int a,n;
     cin>>n;
-    queue<int>q;
-    int res[n];
+    int d[n];
+    stack<int>st1;
     for(int i=0;i<n;i++){
-        int x;
-        cin>>x;
-        q.push(x);
-        res[i]=x;
-    }
-    int ans[n];
-    ans[0]=-1;
-    q.push(q.front());
-    q.pop();
-    n=1;
-    while(n!=q.size()){
-        if(q.front()<=res[n]){
-            ans[n]=q.front();
-        }else if(q.front()>res[n]){
-            ans[n]=-1;
-        }q.push(q.front)
-        n++;
+        cin>>a;
+        if(st1.empty()){
+            st1.push(a);
+            d[i]=-1;
+        }
+        else{
+            while(!st1.empty()){
+                int top = st1.top();
+                if(top<=a){
+                    d[i]=top;
+                    break;
+                }else{
+                    d[i]=-1;
+                    st1.pop();
+                }
+            }st1.push(a);
+        }
     }
     for(int i=0;i<n;i++){
-        cout<<ans[i]<<" ";
+        cout<<d[i]<<' ';
     }
 }
